@@ -1442,25 +1442,17 @@ td input.absent-input{
 <!-- ================= TOOLBAR ================= -->
 
 <div class="toolbar">
-
-<button class="primary" onclick="addStudent()">
-＋ विद्यार्थी
+   
+<button class="warning" onclick="downloadPDF()">
+📥 PDF
 </button>
-
-<button class="danger" onclick="removeStudent()">
-− अंतिम
-</button>
-
+   
 <button class="install-btn" id="installToolbarBtn" onclick="triggerPwaInstall()">
 📲 ऐप इंस्टॉल करें
 </button>
 
 <button class="excel-export-btn" onclick="exportToExcel()">
 📊 Excel Export
-</button>
-
-<button class="warning" onclick="downloadPDF()">
-📥 PDF
 </button>
 
 <button class="gray" onclick="window.print()">
@@ -1505,7 +1497,15 @@ Clear
 <span>📝Students Marks Data Entry</span>
 
 <div>
+   
+<button class="primary" onclick="addStudent()">
+＋ विद्यार्थी
+</button>
 
+<button class="danger" onclick="removeStudent()">
+− अंतिम
+</button>
+   
 <button
 class="primary"
 style="padding:4px 7px;font-size:11px"
