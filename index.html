@@ -1778,7 +1778,7 @@ onchange="importExcel(event)">
 <button
 class="esikosh-btn"
 onclick="document.getElementById('esikoshExcelFile').click()">
-📥 eShikshakosh Student Data Excel Upload
+📥 E-Shiksha Kosh Student Data Excel Upload
 </button>
 
 <input
@@ -1814,13 +1814,13 @@ onclick="sortRollNumbers()">
 
 <div class="esikosh-info">
 
-<strong>📥 eShikshakosh Excel Upload:</strong><br>
+<strong>📥 E-Shiksha KoshExcel Upload:</strong><br>
 
-eShikshakosh की Excel फाइल में
+E-Shiksha Kosh की Excel फाइल में
 <strong>B15 से विद्यार्थी का नाम</strong> और
-<strong>J15 से Roll Number</strong> पढ़ा जाएगा।
-इससे केवल विद्यार्थी का नाम और वर्ग क्रमांक import होगा।
-Marks data import नहीं किया जाएगा।
+<strong>J15 से क्रमांक </strong> इम्पोर्ट हों जाएगा।
+इससे केवल विद्यार्थी का नाम और वर्ग क्रमांक import होंगे और कोई डेटा नहीं।
+
 
 </div>
 
@@ -1828,10 +1828,9 @@ Marks data import नहीं किया जाएगा।
 <div class="class-save-info">
 
 <strong>💾 Class-wise Data Save:</strong><br>
-
-कक्षा / वर्ग का नाम भरकर <strong>Class Save</strong> दबाएँ।
-हर कक्षा का पूरा Marks Data अलग-अलग आपके मोबाइल के Browser में सुरक्षित रहेगा।
-बाद में <strong>Saved Classes</strong> से किसी भी कक्षा का Data Load कर सकते हैं।
+कक्षा का नाम लिखें और <strong>Class Save पर क्लिक करें। </strong>
+हर कक्षा का पूरा Marks Data आपके मोबाइल के Browser में सेव रहेगा।
+बाद में <strong>Saved Classes</strong> से किसी भी कक्षा का Data आसानी से खोल सकते हैं।
 
 </div>
 
@@ -5845,7 +5844,7 @@ new Array(subjects.length)
 if(!importedStudents.length){
 
 alert(
-"❌ eShikshakosh Excel में B15 से Student Name और J15 से Roll Number का डेटा नहीं मिला।"
+"❌ E-Shiksha KoshExcel में B15 से Student Name और J15 से Roll Number का डेटा नहीं मिला।"
 );
 
 return;
@@ -5870,20 +5869,20 @@ autoSave();
 
 
 alert(
-`✓ eShikshakosh से ${students.length} विद्यार्थियों का Name और Roll Number Import हो गया।`
+`✓ E-Shiksha Koshसे ${students.length} विद्यार्थियों का Name और Roll Number Import हो गया।`
 );
 
 
 }catch(error){
 
 console.error(
-"eShikshakosh Import Error:",
+"E-Shiksha KoshImport Error:",
 error
 );
 
 
 alert(
-"❌ eShikshakosh Excel Import में समस्या आई। कृपया सही eShikshakosh Excel फाइल चुनें।"
+"❌ E-Shiksha KoshExcel Import में समस्या आई। कृपया सही E-Shiksha KoshExcel फाइल चुनें।"
 );
 
 }
