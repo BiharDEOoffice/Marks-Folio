@@ -3473,6 +3473,20 @@ for(
 let page=0;
 page<totalPages;
 page++
+   // ---- cursor/focus restore ----
+if(focusInfo && focusInfo.field){
+  let selector = `input[data-field="${focusInfo.field}"][data-student="${focusInfo.student}"]`;
+  if(focusInfo.field === "mark"){
+    selector += `[data-subject="${focusInfo.subject}"]`;
+  }
+  const newInput = wrap.querySelector(selector);
+  if(newInput){
+    newInput.focus();
+    if(typeof focusInfo.selStart === "number"){
+      try{ newInput.setSelectionRange(focusInfo.selStart, focusInfo.selEnd); }catch(e){}
+    }
+  }
+}
 ){
 
 const pageDiv=
