@@ -3437,19 +3437,6 @@ document.getElementById("pagesWrap");
 if(!wrap)
 return;
 
-// ---- cursor/focus save (fix: ek digit ke baad focus chala jaana) ----
-const activeEl = document.activeElement;
-let focusInfo = null;
-if(activeEl && wrap.contains(activeEl) && activeEl.tagName === "INPUT"){
-  focusInfo = {
-    field: activeEl.dataset.field || "",
-    student: activeEl.dataset.student || "",
-    subject: activeEl.dataset.subject,
-    selStart: activeEl.selectionStart,
-    selEnd: activeEl.selectionEnd
-  };
-}
-
 wrap.innerHTML="";
 
 
@@ -3473,20 +3460,6 @@ for(
 let page=0;
 page<totalPages;
 page++
-   // ---- cursor/focus restore ----
-if(focusInfo && focusInfo.field){
-  let selector = `input[data-field="${focusInfo.field}"][data-student="${focusInfo.student}"]`;
-  if(focusInfo.field === "mark"){
-    selector += `[data-subject="${focusInfo.subject}"]`;
-  }
-  const newInput = wrap.querySelector(selector);
-  if(newInput){
-    newInput.focus();
-    if(typeof focusInfo.selStart === "number"){
-      try{ newInput.setSelectionRange(focusInfo.selStart, focusInfo.selEnd); }catch(e){}
-    }
-  }
-}
 ){
 
 const pageDiv=
@@ -3561,7 +3534,6 @@ subCells+=`
 
 <input
 value="${esc(mark)}"
-data-field="mark" data-student="${i}" data-subject="${s}"
 oninput="cellChanged(${i},${s},this.value)">
 
 <span class="print-only">
