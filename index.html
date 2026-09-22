@@ -3437,6 +3437,19 @@ document.getElementById("pagesWrap");
 if(!wrap)
 return;
 
+// ---- cursor/focus save (fix: ek digit ke baad focus chala jaana) ----
+const activeEl = document.activeElement;
+let focusInfo = null;
+if(activeEl && wrap.contains(activeEl) && activeEl.tagName === "INPUT"){
+  focusInfo = {
+    field: activeEl.dataset.field || "",
+    student: activeEl.dataset.student || "",
+    subject: activeEl.dataset.subject,
+    selStart: activeEl.selectionStart,
+    selEnd: activeEl.selectionEnd
+  };
+}
+
 wrap.innerHTML="";
 
 
