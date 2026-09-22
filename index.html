@@ -3437,6 +3437,40 @@ document.getElementById("pagesWrap");
 if(!wrap)
 return;
 
+const activeEl=
+document.activeElement;
+
+let focusKey=null;
+
+let selStart=null;
+
+let selEnd=null;
+
+if(
+activeEl &&
+wrap.contains(activeEl) &&
+activeEl.tagName==="INPUT" &&
+activeEl.dataset &&
+activeEl.dataset.key
+){
+
+focusKey=
+activeEl.dataset.key;
+
+if(
+typeof activeEl.selectionStart==="number"
+){
+
+selStart=
+activeEl.selectionStart;
+
+selEnd=
+activeEl.selectionEnd;
+
+}
+
+}
+
 wrap.innerHTML="";
 
 
@@ -3515,6 +3549,7 @@ subCells+=`
 
 <input
 class="absent-input"
+data-key="mark-${i}-${s}"
 value="ABSENT"
 oninput="cellChanged(${i},${s},this.value)">
 
@@ -3533,6 +3568,7 @@ subCells+=`
 <td class="col-sub">
 
 <input
+data-key="mark-${i}-${s}"
 value="${esc(mark)}"
 oninput="cellChanged(${i},${s},this.value)">
 
@@ -3614,6 +3650,7 @@ ${srNoText}
 <td class="col-roll">
 
 <input
+data-key="roll-${i}"
 value="${esc(student.roll)}"
 oninput="cellInfoChanged(${i},'roll',this.value)">
 
@@ -3627,6 +3664,7 @@ ${student.roll ? esc(student.roll) : "-"}
 <td class="col-name name">
 
 <input
+data-key="name-${i}"
 value="${esc(student.name)}"
 oninput="cellInfoChanged(${i},'name',this.value)">
 
@@ -3756,6 +3794,7 @@ totalPages>1
 </label>
 
 <input
+data-key="hdr-center-${page}"
 value="${esc(details.center)}"
 oninput="syncHeaderInputs('center',this.value)">
 
@@ -3768,6 +3807,7 @@ ${details.center ? esc(details.center) : "-"}
 </label>
 
 <input
+data-key="hdr-district-${page}"
 value="${esc(details.district)}"
 oninput="syncHeaderInputs('district',this.value)">
 
@@ -3785,6 +3825,7 @@ ${details.district ? esc(details.district) : "-"}
 </label>
 
 <input
+data-key="hdr-school-${page}"
 value="${esc(details.school)}"
 oninput="syncHeaderInputs('school',this.value)">
 
@@ -3802,6 +3843,7 @@ ${details.school ? esc(details.school) : "-"}
 </label>
 
 <input
+data-key="hdr-udise-${page}"
 value="${esc(details.udise)}"
 oninput="syncHeaderInputs('udise',this.value)">
 
@@ -3814,6 +3856,7 @@ ${details.udise ? esc(details.udise) : "-"}
 </label>
 
 <input
+data-key="hdr-block-${page}"
 value="${esc(details.block)}"
 oninput="syncHeaderInputs('block',this.value)">
 
@@ -3831,6 +3874,7 @@ ${details.block ? esc(details.block) : "-"}
 </label>
 
 <input
+data-key="hdr-className-${page}"
 value="${esc(details.className)}"
 oninput="syncHeaderInputs('className',this.value)">
 
@@ -3955,6 +3999,38 @@ class="note-cell">
 
 
 wrap.appendChild(pageDiv);
+
+}
+
+
+if(focusKey){
+
+const el=
+wrap.querySelector(
+`[data-key="${focusKey}"]`
+);
+
+if(el){
+
+el.focus();
+
+if(
+selStart!==null &&
+typeof el.setSelectionRange==="function"
+){
+
+try{
+
+el.setSelectionRange(
+selStart,
+selEnd
+);
+
+}catch(err){}
+
+}
+
+}
 
 }
 
